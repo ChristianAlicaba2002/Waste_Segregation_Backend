@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="img/IM_logo.png" type="image/x-icon">
-    <title>Dashboard</title>
+    <title>Admin</title>
     <style>
 body {
     font-family: 'Poppins', sans-serif;
@@ -17,7 +17,8 @@ body {
 }
 
 .dashboard-container {
-    border-left:rgb(117, 182, 120) 5px solid;
+    background: transparent;
+    border-left: #81c784 5px solid;
     border-radius: 30px;
     width: 100%;
     overflow: hidden;
@@ -29,55 +30,52 @@ body {
     color: #388e3c;
     transition: width 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     padding: 20px;
-    width: 65px;
+    width: 100px;
     overflow: hidden;
-    background-color: transparent;
 }
 
 .sidebar:hover {
-    width: 250px;
+    width: 280px;
     align-items: flex-start;
 }
 
-.user-info {
+.Binnie {
     display: flex;
     align-items: center;
     margin-bottom: 2rem;
-    padding: 15px 0;
-    border-bottom: 1px solid #c8e6c9;
     width: 100%;
 }
 
-.sidebar .user-info img {
-    width: 50px;
-    height: 50px;
-    margin-right: 0;
-    transition: margin-right 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+.sidebar .Binnie img {
+    margin: 0;
+    width: 70px;
+    height: 70px;
+    margin-left: 1rem;
+    transition: margin-right 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.sidebar:hover .user-info img {
+.sidebar:hover .Binnie img {
     margin-right: 10px;
 }
 
 .name {
-    margin-left: 15px;
     font-family: 'DM Serif Display', serif;
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     color: #388e3c;
     text-decoration: none;
     white-space: nowrap;
-    letter-spacing: .1rem;
+    letter-spacing: 2px;
     opacity: 0;
-    transition: opacity 0.3s cubic-bezier(0.19, 1, 0.22, 1), margin-left 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+    transition: opacity 0.3s cubic-bezier(0.19, 1, 0.22, 1), margin-left 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .sidebar:hover .name {
     opacity: 1;
-    margin-left: 15px;
+    margin-left: 10px;
 }
 
 .menu {
-    margin-top: 20px;
+    margin-top: 15px;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
@@ -90,50 +88,52 @@ body {
     margin: 0;
     width: 100%;
 }
-
 .menu li {
-    padding: 10px 20px;
-    gap: 10px;
+    padding: 8px 25px;
+    gap: 8px;
     display: flex;
     align-items: center;
     cursor: pointer;
-    margin-top: 2rem;
-    margin-bottom: 3rem;
-    color: white;
-    font-size: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+    color: #2e7d32;
+    font-size: 0.9rem;
     font-weight: 400;
     position: relative;
-    border-radius: 12px;
+    border-radius: 25px;
     background-color: transparent;
     transition: all 0.3s ease;
-    color:rgb(95, 158, 100)  ;
-
 }
 
 .menu li:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 4px 4px rgba(177, 247, 186, 0.62);
-    transform: translateY(-2px);
-    color:rgb(19, 77, 22);
-
+    border: rgb(151, 218, 155) 1px solid;
+    background-color: white;
+    box-shadow: 0 2px 2px rgba(177, 247, 186, 0.62);
+    transform: scale(1.02) translateY(-1px);
+    color: #1b5e20;
+    filter: brightness(1.1);
 }
 
 .menu li.active {
-    border:rgb(179, 218, 182) 1px solid;
+    background-color: transparent;
+    border:rgb(133, 185, 135) 1px solid;
     color: #1b5e20;
     font-weight: 500;
-    transform: translateY(-2px);
+    transform: scale(1.02) translateY(-1px);
+    filter: brightness(0.9);
 }
 
 .menu li img.menu-icon {
-    width: 24px;
-    height: 24px;
+    width: 35px;
+    height: 35px;
     opacity: 0.85;
-    transition: transform 0.3s ease;
+    transition: transform 0.4s ease;
+    margin-right: 5px;
 }
 
 .menu li:hover img.menu-icon {
-    transform: scale(1.1);
+    transform: scale(1.2);
+
 }
 
 .menu li span {
@@ -145,12 +145,12 @@ body {
 
 .sidebar:hover .menu li span {
     opacity: 1;
-    margin-left: 5px;
+    margin-left: 3px;
 }
+
 .logout-form {
-    margin-top: auto;
-    padding-top: 20px;
-    border-top: 1px solid #c8e6c9;
+    margin-top: 2rem;
+    padding-top: 15px;
     width: 100%;
 }
 
@@ -158,32 +158,31 @@ body {
     background: none;
     border: none;
     color: #43a047;
-    padding: 12px 20px;
+    padding: 10px 15px;
     display: flex;
     align-items: center;
     cursor: pointer;
     width: 100%;
-    font-size: 1rem;
+    font-size: 0.9rem;
     text-align: left;
     transition: background-color 0.2s ease-in-out;
 }
 
-
 .logout-form button.Logout img.menu-icon {
     margin-right: 0;
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     opacity: 0.8;
     transition: margin-right 0.3s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.3s cubic-bezier(0.19, 1, 0.22, 1), transform 0.3s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 .sidebar:hover .logout-form button.Logout img.menu-icon {
-    margin-right: 10px;
+    margin-right: 8px;
 }
 
 .logout-form button.Logout:hover img.menu-icon {
     opacity: 1;
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
 
 .logout-form button.Logout span {
@@ -195,11 +194,11 @@ body {
 
 .sidebar:hover .logout-form button.Logout span {
     opacity: 1;
-    margin-left: 10px;
+    margin-left: 3px;
 }
 
 .content {
-    padding: 30px;
+    padding: 20px;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
@@ -207,235 +206,280 @@ body {
 
 .section {
     display: none;
-    margin-bottom: 30px;
-        overflow-y: auto;
-
+    margin-bottom: 20px;
+    overflow-y: auto;
 }
 
 .section.active {
     display: block;
 }
 
+#homeContent h1 {
+    font-size: 2em;
+    color: #388e3c;
+    margin-bottom: 20px;
+}
 .trash-summary {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  gap: 20px;
-  padding: 20px;
-
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
 }
 
 .card {
-    border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 300px;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border: 1px solid rgb(87, 225, 144);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+    width: 180px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #81c784;
 }
 
 .card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .card i {
-  font-size: 40px;
-  margin-bottom: 15px;
-  color:rgb(74, 195, 135);
+    font-size: 30px;
+    margin-bottom: 10px;
+    color: #4caf50;
 }
 
 .card h3 {
-  font-size: 1.5em;
-  margin-bottom: 10px;
-  color: #558b2f;
+    font-size: 1.1em;
+    margin-bottom: 8px;
+    color: #388e3c;
 }
 
 .card .stat {
-  width: 100%;
-  height: 4px;
-  background:linear-gradient(to left,rgb(255, 255, 255),rgb(106, 194, 142));
-  margin-bottom: 15px;
-  border-radius: 2px;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(to left, #fff, #81c784);
+    margin-bottom: 10px;
+    border-radius: 1.5px;
 }
 
 .card h4 {
-  margin-bottom: 5px;
-  color: #555;
+    margin-bottom: 3px;
+    color: #555;
+    font-size: 0.85em;
 }
 
 .card h5 {
-  margin-bottom: 15px;
-  color: #33691e;
+    margin-bottom: 10px;
+    color: #33691e;
+    font-size: 0.95em;
 }
 
 .card p {
-  font-size: 0.8em;
-  color: #777;
+    font-size: 0.75em;
+    color: #777;
 }
 
-
 #userContent {
-  padding: 20px;
-  border-radius: 8px;
-  margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 15px;
 }
 
 #userContent h2 {
-  color: #1b5e20;
-  margin-bottom: 15px;
-  font-size: 1.5em;
+    color: #1b5e20;
+    margin-bottom: 12px;
+    font-size: 1.3em;
 }
 
-.user-info-section {
-  padding: 15px;
-  border-radius: 6px;
+.Binnie-section {
+    padding: 12px;
+    border-radius: 4px;
 }
 
-.user-info-section table {
-  width: 100%;
-  border-collapse: collapse;
-  display: block;
+.Binnie-section table {
+    width: 100%;
+    border-collapse: collapse;
+    display: block;
 }
 
-.user-info-section thead {
-  display: block;
-  width: 100%;
+.Binnie-section thead {
+    display: block;
+    width: 100%;
 }
 
-.user-info-section tbody {
-  display: block;
-  width: 100%;
-  height: fit-content;
-  padding: .5rem;
-  background-color: rgb(130, 202, 134);
-  border: #c8e6c9 1px solid;
-  border-radius: 10px;
-  color: white;
-  box-sizing: border-box;
+.Binnie-section tbody {
+    display: block;
+    width: 100%;
+    height: fit-content;
+    padding: 0.4rem;
+    background-color: #81c784;
+    border: #c8e6c9 1px solid;
+    border-radius: 8px;
+    color: white;
+    box-sizing: border-box;
 }
 
-.user-info-section th,
-.user-info-section td {
-  padding: 8px;
-  text-align: left;
+.Binnie-section th,
+.Binnie-section td {
+    padding: 6px;
+    text-align: left;
+    font-size: 0.85em;
 }
 
-.user-info-section th {
-  font-weight: bold;
-  color: gray;
+.Binnie-section th {
+    font-weight: bold;
+    color: gray;
 }
 
-.user-info-section tr {
-  display: flex;
-  width: 100%;
-  box-sizing: border-box;
+.Binnie-section tr {
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
 }
 
-.user-info-section th,
-.user-info-section td {
-  flex: 1;
-  box-sizing: border-box;
+.Binnie-section th,
+.Binnie-section td {
+    flex: 1;
+    box-sizing: border-box;
 }
 
-.user-info-section thead tr {
-  display: flex;
-  width: 100%;
-  box-sizing: border-box;
+.Binnie-section thead tr {
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
 }
 
-.user-info-section thead th {
-  flex: 1;
-  box-sizing: border-box;
+.Binnie-section thead th {
+    flex: 1;
+    box-sizing: border-box;
 }
 
 #tableContent {
-  padding: 20px;
-  border-radius: 8px;
-  margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 15px;
 }
 
-#tableContent h2 {
-  color: #1b5e20;
-  margin-bottom: 15px;
-  font-size: 1.5em;
+#trashrecordContent h2, #tableContent h2, #supportContent h2, #garbageContent h2{
+    color: #1b5e20;
+    margin-bottom: 12px;
 }
 
 .table-record-section {
-  padding: 15px;
-  border-radius: 6px;
+    padding: 12px;
+    border-radius: 4px;
 }
 
 .table-record-section table {
-  width: 100%;
-  border-collapse: collapse;
-  display: block;
+    width: 100%;
+    border-collapse: collapse;
+    display: block;
 }
 
 .table-record-section thead {
-  display: block;
-  width: 100%;
+    display: block;
+    width: 100%;
 }
 
 .table-record-section tbody {
-  display: block;
-  width: 100%;
-  height: fit-content;
-  padding: 1rem;
-  border-radius: 50px;
-  box-sizing: border-box;
+    display: block;
+    width: 100%;
+    height: fit-content;
+    padding: 0.8rem;
+    border-radius: 30px;
+    box-sizing: border-box;
 }
 
 .table-record-section th,
 .table-record-section td {
-  padding: 10px;
-  text-align: left;
+    padding: 8px;
+    text-align: left;
+    font-size: 0.85em;
 }
 
 .table-record-section th {
-  font-weight: bold;
-  color: #757575;
+    font-weight: bold;
+    color: #757575;
 }
 
 .table-record-section tr {
-  display: flex;
-  width: 100%;
-  box-sizing: border-box;
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .table-record-section th,
 .table-record-section td {
-  flex: 1;
-  box-sizing: border-box;
+    flex: 1;
+    box-sizing: border-box;
 }
 
 .table-record-section thead tr {
-  display: flex;
-  width: 100%;
-  box-sizing: border-box;
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .table-record-section thead th {
-  flex: 1;
-  box-sizing: border-box;
+    flex: 1;
+    box-sizing: border-box;
 }
 
 .table-record-section tbody tr {
-  border: 1px solid rgb(222, 253, 223);
-  background-color: #c8e6c9;
-  border-radius: 10px;
-  margin-bottom: 1rem;
-  padding: 0;
+    border: 1px solid rgb(225, 250, 224);
+    background-color: #81c784;
+    border-radius: 8px;
+    margin-bottom: 0.8rem;
+    padding: 0;
 }
+
+.table-record-section tbody button {
+    width: 30%;
+    padding: 0.6rem;
+    background-color: white;
+    border:rgb(177, 252, 202) 1px solid;
+    border-radius: 30px;
+    color: #388e3c;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
+.table-record-section tbody button:hover {
+    background-color:whitesmoke;
+    border: lightgreen 1px solid;
+    color: lightgreen;
+    transition: all 0.3s ease;
+}
+.totaltrash {
+    width: auto;
+    background-color: #e0f2e7;
+    border: white 1px solid;
+    border-radius: 15px;
+    margin-top: 15px;
+}
+
+.category {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    padding: 8px 15px;
+    font-size: 0.8em;
+}
+
+.category h3 {
+    font-size: 0.9em;
+    color: #388e3c;
+    margin: 0;
+}
+
 
 </style>
 </head>
 <body>
     <aside class="sidebar">
-        <div class="user-info">
+        <div class="Binnie">
             <img src="img/IM_logo.png" alt="IM Logo">
             <p class="name">TrashBinnie</p>
         </div>
@@ -449,9 +493,18 @@ body {
                     <img src="img/user.png" class="menu-icon" alt="User Icon">
                     <span>Users</span>
                 </li>
-                <li onclick="showSection('tableContent')">
-                    <img src="img/table.png" class="menu-icon" alt="Table Icon">
-                    <span>Table Record</span>
+
+                <li onclick="showSection('trashrecordContent')">
+                    <img src="img/record.png" class="menu-icon" alt="Table Icon">
+                    <span>Trash Record</span>
+                </li>
+                <li onclick="showSection('garbageContent')">
+                    <img src="img/trash.png" class="menu-icon" alt="Table Icon">
+                    <span>Bin Collected</span>
+                </li>
+                <li onclick="showSection('supportContent')">
+                    <img src="img/support.png" class="menu-icon" alt="Table Icon">
+                    <span>Support</span>
                 </li>
             </ul>
         </nav>
@@ -468,37 +521,33 @@ body {
         <main class="content">
             <section id="homeContent" class="section active">
                 <h1>Welcome back, Admin!</h1>
-                <p>Here's a summary of the inside of your Trashbinnie:</p>
                 <div class="trash-summary">
                 <div class="card">
                     <i class="fas fa-newspaper"></i>
                     <h3>Paper Items</h3>
                     <div class="stat"></div>
-                    <h4>Garbage Last Weight Collected: </h4>
-                    <h5>70kilo</h5>
-                    <p>9:00pm 09-08-35</p>
+                    <h4>TOTAL TRASH: </h4>
+                    <h5>70</h5>
                 </div>
                 <div class="card">
                     <i class="fas fa-wine-bottle"></i>
                     <h3>Plastic Items</h3>
                     <div class="stat"></div>
-                    <h4>Garbage Last Weight Collected: </h4>
-                    <h5>70kilo</h5>
-                    <p>9:00pm 09-08-35</p>
+                    <h4>TOTAL TRASH: </h4>
+                    <h5>90</h5>
                 </div>
                 <div class="card">
                     <i class="fas fa-cog"></i>
                     <h3>Metal Items</h3>
                     <div class="stat"></div>
-                    <h4>Garbage Last Weight Collected: </h4>
-                    <h5>70kilo</h5>
-                    <p>9:00pm 09-08-35</p>
+                    <h4>TOTAL TRASH: </h4>
+                    <h5>80</h5>
                 </div>
             </section>
 
             <section id="userContent" class="section">
                 <h2>User Information</h2>
-                <div class="user-info-section">
+                <div class="Binnie-section">
                     <table>
                         <thead>
                             <tr>
@@ -510,52 +559,98 @@ body {
                         </thead>
                         <tbody>
                             <tr>
-                                <td>TB12345</td>
+                                <td>A101</td>
                                 <td>TrashBinFan</td>
-                                <td>Binny</td>
-                                <td>Binner</td>
+                                <td>Ayumi</td>
+                                <td>Gwapo</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </section>
 
-            <section id="tableContent" class="section">
-                <h2>Table Record</h2>
+
+            <section id="supportContent" class="section">
+                <h2>Support</h2>
                 <div class="table-record-section">
                     <table class="record-table">
                         <thead>
                             <tr>
                                 <th>User ID</th>
-                                <th>Trashbinnie ID</th>
-                                <th>Trash ID</th>
-                                <th>Category</th>
-                                <th>Garbage Last Weight Collected</th>
-                                <th>User ID (Guest/Customer)</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
                                 <th>Support ID</th>
+                                <th>Message</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>[User ID 1]</td>
-                                <td>[Trashbinnie ID 1]</td>
-                                <td>[Trash ID 1]</td>
-                                <td>[Category 1]</td>
-                                <td>[Weight 1]</td>
-                                <td>[Guest/Customer ID 1]</td>
-                                <td>[Support ID 1]</td>
-                            </tr>
-                            <tr>
-                                <td>[User ID 2]</td>
-                                <td>[Trashbinnie ID 2]</td>
-                                <td>[Trash ID 2]</td>
-                                <td>[Category 2]</td>
-                                <td>[Weight 2]</td>
-                                <td>[Guest/Customer ID 2]</td>
-                                <td>[Support ID 2]</td>
+                                <td>90q23</td>
+                                <td>Ayumi</td>
+                                <td>Gwapo</td>
+                                <td>o9009</td>
+                                <td><button>VIEW</button></td>
                             </tr>
                         </tbody>
                     </table>
+                </div>
+            </section>
+
+            <section id="trashrecordContent" class="section">
+                <h2>Trash Record</h2>
+                <div class="table-record-section">
+                    <table class="record-table">
+                        <thead>
+                            <tr>
+                                <th>User ID</th>
+                                <th>Trash ID</th>
+                                <th>Category</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>90q23</td>
+                                <td>A101</td>
+                               <td>Plastic</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="totaltrash" style="width: auto; background-color: lightgreen;  border: white 1px solid; border-radius:20px;
+                                                    margin-top: 20%;">
+                        <div class="category" style="display: flex; flex-direction:row; gap:10rem; padding:10px 20px;
+                                                font-size: smaller;">
+                        <h3>Total Items Segregated: </h3>
+                        <h3>Paper: </h3>
+                        <h3>Plastic: </h3>
+                        <h3>Metal: </h3>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="garbageContent" class="section">
+                <h2>Garbage Collector Record</h2>
+                <div class="table-record-section">
+                    <table class="record-table">
+                        <thead>
+                            <tr>
+                                <th>User ID</th>
+                                <th>Garbage Weight Collected: </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>90q23</td>
+                                <td>100kilo</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="totaltrash" style="width: auto; background-color: lightgreen;  border: white 1px solid; border-radius:20px;
+                                                    margin-top: 20%;">
+                        <div class="category" style="display: flex; flex-direction:row; gap:10rem; padding:10px 20px;
+                                                font-size: smaller;">
+                        <h3>Garbage Weight Collected: </h3>
                 </div>
             </section>
 
