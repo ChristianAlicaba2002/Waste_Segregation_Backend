@@ -12,10 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('waste_item', function (Blueprint $table) {
-            $table->string('item_id')->primary();
+            $table->integer('item_id')->primary()->autoIncrement();
             $table->string('category_id')->contrained('waste_category');
-            $table->string('item_category')->contrained('waste_category');
-            $table->timestamp('time_segregated');
+            $table->integer('binnie_id');
+            $table->timestamps();
         });
     }
 

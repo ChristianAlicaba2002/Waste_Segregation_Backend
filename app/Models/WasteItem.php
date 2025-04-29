@@ -8,13 +8,9 @@ class WasteItem extends Model
 {
     protected $table = 'waste_item';
     protected $primaryKey = 'item_id';
-    protected $keyType = 'string';
-    public $timestamps = false;
 
     protected $fillable = [
-        'item_id',
+        'binnie_id',
         'category_id',
-       ' item_category',
-       ' item_segregated',
     ];
 }

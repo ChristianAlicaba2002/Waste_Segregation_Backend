@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('waste_category', function (Blueprint $table) {
-            $table->string('category_id')->primary();
+            $table->id('category_id')->primary();
             $table->string('category_name');
             $table->timestamps();
         });
