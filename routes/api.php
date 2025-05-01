@@ -9,5 +9,5 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 
-Route::post('/wastedata', [PasingwasteController::class, 'PasingData']);
+Route::post('/wastedata', [PasingwasteController::class, 'PassingData']);
 route::get('/allwasteitem', [PasingwasteController::class , 'getAllWasteItem']);

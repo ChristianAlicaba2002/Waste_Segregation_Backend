@@ -17,6 +17,31 @@
             background-color: white;
         }
 
+        .table-legend-container {
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+
+        .table-legend {
+            display: flex;
+            gap: 20px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .legend-color {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+
         .dashboard-container {
             background: transparent;
             border-left: #81c784 5px solid;
@@ -586,24 +611,25 @@
                         <h3>Paper Items</h3>
                         <div class="stat"></div>
                         <h4>TOTAL TRASH: </h4>
-                        <h5>70</h5>
+                        <h5>{{ $paper }}</h5>
                     </div>
                     <div class="card">
                         <i class="fas fa-wine-bottle"></i>
                         <h3>Plastic Items</h3>
                         <div class="stat"></div>
                         <h4>TOTAL TRASH: </h4>
-                        <h5>90</h5>
+                        <h5>{{ $plastic }}</h5>
                     </div>
                     <div class="card">
                         <i class="fas fa-cog"></i>
                         <h3>Metal Items</h3>
                         <div class="stat"></div>
                         <h4>TOTAL TRASH: </h4>
-                        <h5>80</h5>
+                        <h5>{{ $metal }}</h5>
                     </div>
             </section>
 
+            <!-- User Information -->
             <section id="userContent" class="section">
                 <h2>User Information</h2>
                 <div class="Binnie-section">
@@ -612,9 +638,9 @@
                             <tr>
                                 <th>Trashbinnie ID</th>
                                 <th>User ID</th>
-                                <th>Username</th>
                                 <th>First Name</th>
                                 <th>Last Name</th>
+                                <th>Username</th>
                                 <th>Created At</th>
                             </tr>
                         </thead>
@@ -639,6 +665,7 @@
             </section>
 
 
+            <!-- Support Content -->
             <section id="supportContent" class="section">
                 <h2>Support</h2>
                 <div class="table-record-section">
@@ -646,6 +673,7 @@
                         <thead>
                             <tr>
                                 <th>User ID</th>
+                                <th>Binnie ID</th>
                                 <th>First Name</th>
                                 <th>Last Name</th>
                                 <th>Support ID</th>
@@ -653,18 +681,18 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @if(count($noneUser) > 0)
-                            @foreach($noneUser as $noneuser)
+                            @if(count($message_support) > 0)
+                            @foreach($message_support as $support)
                             <tr>
-                                <td>{{ $noneuser->id }}</td>
-                                <td>{{ $noneuser->first_name }}</td>
-                                <td>{{ $noneuser->last_name }}</td>
-                                <td>{{ $noneuser->support_id }}</td>
+                                <td>{{ $support->id }}</td>
+                                <td>{{ $support->binnie_id ?  $support->binnie_id : 'None User'}}</td>
+                                <td>{{ $support->first_name }}</td>
+                                <td>{{ $support->last_name }}</td>
+                                <td>{{ $support->support_id }}</td>
                                 <td>
-                                    <button 
+                                    <button
                                         class="view-btn"
-                                        onclick="ShowMessage('{{$noneuser->support_id}}', '{{$noneuser->message}}')"
-                                    >VIEW</button>
+                                        onclick="ShowMessage('{{$support->support_id}}', '{{$support->message}}')">VIEW</button>
                                 </td>
                             </tr>
                             @endforeach
@@ -676,8 +704,25 @@
                 </div>
             </section>
 
+            <!-- Trash Record -->
             <section id="trashrecordContent" class="section">
                 <h2>Trash Record</h2>
+                <div class="table-legend-container">
+                    <div class="table-legend">
+                        <div class="legend-item">
+                            <span class="legend-color" style="background-color: #e74c3c;"></span>
+                            <span>Metal: 1</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-color" style="background-color: #2ecc71;"></span>
+                            <span>Paper: 2</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-color" style="background-color: #3498db;"></span>
+                            <span>Plastic: 3</span>
+                        </div> 
+                    </div>
+                </div>
                 <div class="table-record-section">
                     <table class="record-table">
                         <thead>
@@ -688,11 +733,17 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @if(count($waste_item_collected) > 0)
+                            @foreach($waste_item_collected as $recordTrash)
                             <tr>
-                                <td>90q23</td>
-                                <td>1</td>
-                                <td>Plastic</td>
+                                <td>{{$recordTrash->binnie_id}}</td>
+                                <td>{{ $recordTrash->item_id}}</td>
+                                <td>{{ $recordTrash->category_id ? $recordTrash->category_id : 'No Category'}}</td>
                             </tr>
+                            @endforeach
+                            @else
+                            <td colspan="3" style="text-align: center;">No waste item record</td>
+                            @endif
                         </tbody>
                     </table>
                     <div class="totaltrash" style="width: auto; background-color: lightgreen;  border: white 1px solid; border-radius:20px;
@@ -700,29 +751,42 @@
                         <div class="category" style="display: flex; flex-direction:row; gap:10rem; padding:10px 20px;
                                                 font-size: smaller;">
                             <h3>Total Items Segregated: </h3>
-                            <h3>Paper: </h3>
-                            <h3>Plastic: </h3>
-                            <h3>Metal: </h3>
+                            <h3>Paper: {{ $paper }}</h3>
+                            <h3>Plastic: {{ $plastic }}</h3>
+                            <h3>Metal: {{ $metal }}</h3>
                         </div>
                     </div>
                 </div>
             </section>
 
+
+            <!-- Garbage Collector Record -->
             <section id="garbageContent" class="section">
                 <h2>Garbage Collector Record</h2>
                 <div class="table-record-section">
                     <table class="record-table">
                         <thead>
                             <tr>
-                                <th>User ID</th>
+                                <th>Binnie ID</th>
                                 <th>Garbage Weight Collected: </th>
+                                <!-- <th>Created at</th> -->
                             </tr>
                         </thead>
                         <tbody>
+                            @if(count($trash_collected) > 0)
+
+                            @foreach($trash_collected as $trash)
                             <tr>
-                                <td>90q23</td>
-                                <td>100kilo</td>
+                                <td>{{ $trash->trash_binnie_id }}</td>
+                                <td>{{$trash->weightRecorded}}</td>
+                                <!-- <td>{{ $trash->created_at }}</td> -->
                             </tr>
+                            @endforeach
+
+                            @else
+                            <td colspan="2" style="text-align: center;">No Trash Collected</td>
+                            @endif
+
                         </tbody>
                     </table>
                 </div>
@@ -730,7 +794,12 @@
                                                     margin-top: 20%;">
                     <div class="category" style="display: flex; flex-direction:row; gap:10rem; padding:10px 20px;
                                                 font-size: smaller;">
-                        <h3>Garbage Weight Collected: </h3>
+                        <h3>
+                            @php
+
+                            @endphp
+
+                            Garbage Weight Collected: {{ $weightRecorded }}</h3>
                     </div>
             </section>
 
@@ -748,7 +817,7 @@
             let messageElement = document.getElementById('showMessage');
             let overlay = document.getElementById('modalOverlay');
             let messageContent = document.getElementById('messageContent');
-            
+
             messageContent.textContent = message;
             messageElement.style.display = 'block';
             overlay.style.display = 'block';
@@ -757,7 +826,7 @@
         function closeMessage() {
             let messageElement = document.getElementById('showMessage');
             let overlay = document.getElementById('modalOverlay');
-            
+
             messageElement.style.display = 'none';
             overlay.style.display = 'none';
         }

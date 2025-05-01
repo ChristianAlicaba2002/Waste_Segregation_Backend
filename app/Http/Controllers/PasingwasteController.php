@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Location;
+use App\Models\TrashCollected;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Carbon;
@@ -21,11 +23,12 @@ public function getAllWasteItem()
 
 
 
-public function PasingData(Request $request)
+public function PassingData(Request $request)
 {
     $validateData = Validator::make($request->all(), [
         'binnie_id' => 'required|numeric',
-        'category_id' => 'required|numeric',
+        'category_id' => 'nullable|numeric',
+        'weightRecorded' => 'nullable|numeric'
     ]);
 
     if ($validateData->fails()) {
@@ -45,24 +48,69 @@ public function PasingData(Request $request)
                 ->first();
 
     // If either category or binnie is not found
-    if (!$category || !$binnie) {
+    if (!$binnie) {
         return response()->json([
             'status' => false,
-            'message' => 'Category or Binnie not found.',
+            'message' => 'Binnie not found.',
         ], 404);
     }
 
-    // Create waste item
-    $waste = WasteItem::create([
-        'binnie_id' => $binnie->binnie_id,
-        'category_id' => $category->category_id,
-    ]);
+    //If category_id and WeightRecorded are null
+    if($request->category_id == null && $request->weightRecorded == null)
+    {
+           
+        $waste_item = WasteItem::create([
+            'binnie_id' => $request->binnie_id,
+        ]);
 
-    return response()->json([
-        'status' => true,
-        'message' => 'Created Successfully',
-        'data' => $waste
-    ], 201);
+        return response()->json([
+            'status' => true,
+            'message' => 'Binnie ID Successfully',
+            'waste_item' =>  $waste_item
+        ]);
+        
+    }
+
+    //if WeightRecorded is null
+    if($request->weightRecorded == null)
+    {
+    
+        $waste_item = WasteItem::create([
+            'binnie_id' => $binnie->binnie_id,
+            'category_id' => $category->category_id,
+        ]);
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Weight Recorded Successfully',
+            'waste_item' =>  $waste_item
+        ]);
+
+    }
+
+    //If Category ID is null
+    if($request->category_id == null)
+    {
+
+        $trash_collected = TrashCollected::create([
+            'trash_binnie_id' => $binnie->binnie_id,
+            'weightRecorded' =>  $request->weightRecorded
+        ]);
+
+        $trash_location = Location::create([
+            'binnie_id'=> $binnie->binnie_id,
+            'location_name'=> $binnie->city
+            
+        ]); 
+    
+        return response()->json([
+            'status' => true,
+            'message' => 'Trash Collected Successfully',
+            'trash_collected' => $trash_collected
+        ]);
+
+    }
+
 }
 
 }

@@ -12,5 +12,6 @@ class WasteItem extends Model
     protected $fillable = [
         'binnie_id',
         'category_id',
+        'weightRecorded'
     ];
 }
