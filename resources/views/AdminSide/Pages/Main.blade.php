@@ -28,6 +28,8 @@
             gap: 20px;
         }
 
+
+
         .legend-item {
             display: flex;
             align-items: center;
@@ -460,11 +462,17 @@
 
         .table-record-section tbody tr {
             border: 1px solid rgb(225, 250, 224);
-            background-color: #81c784;
+            /* background-color: #81c784; */
             border-radius: 8px;
             margin-bottom: 0.8rem;
             padding: 0;
         }
+
+        .table-record-section tbody tr:nth-child(even) {
+            background-color: lightgrey;
+        }
+
+
 
         .table-record-section tbody button {
             width: 30%;
@@ -720,7 +728,7 @@
                         <div class="legend-item">
                             <span class="legend-color" style="background-color: #3498db;"></span>
                             <span>Plastic: 3</span>
-                        </div> 
+                        </div>
                     </div>
                 </div>
                 <div class="table-record-section">
@@ -738,7 +746,13 @@
                             <tr>
                                 <td>{{$recordTrash->binnie_id}}</td>
                                 <td>{{ $recordTrash->item_id}}</td>
-                                <td>{{ $recordTrash->category_id ? $recordTrash->category_id : 'No Category'}}</td>
+                                <td>
+                                    <span style="color:white; padding:2px 10px; border-radius:50%; background-color:
+                                    {{ $recordTrash->category_id == '1' ? 'red' : ($recordTrash->category_id == '2' ? 'green' : 'blue') }}">
+
+                                        {{ $recordTrash->category_id ? $recordTrash->category_id : 'No Category'}}
+                                    </span>
+                                </td>
                             </tr>
                             @endforeach
                             @else
