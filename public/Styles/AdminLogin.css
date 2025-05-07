@@ -4,23 +4,29 @@
     box-sizing: border-box;
 }
 
+
+
+
+
 body {
-    font-family: 'Arial', sans-serif;
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: center;
+    background-repeat: no-repeat;
+    background-size: contain;
     height: 100vh;
-    background-color: white;
+    background-image: url('/img/main.jpg');
     margin: 0;
 }
 
 .login-container {
-    background-color: white;
+    background-color: transparent;
     padding: 3rem;
+    margin: 3rem auto;
     border-radius: 15px;
     box-shadow: 0 4px 20px rgba(176, 243, 156, 0.95);
     width: 100%;
-    max-width: 400px;
+    max-width: 500px;
     text-align: center;
 }
 
@@ -40,10 +46,29 @@ body {
 }
 
 h1 {
-    color: rgba(176, 243, 156, 0.95);
-    margin-bottom: 1.5rem;
+    color: white;
+    font-weight: bold;
+    font-family: 'DM Serif Display', serif;
+    letter-spacing: 10px;
+    font-size: 2.5rem;
+    text-shadow:
+        8px 0 0 #2e7d32,
+        2px 0 0 #2e7d32,
+        2px 0 0 #2e7d32,
+        8px 0 0 #2e7d32;
 }
 
+p{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: white;
+    text-shadow:
+    2px 0 0 black,
+    2px 0 0 black,
+    2px 0 0 black,
+    2px 0 0 black;
+    font-size: 1.5em;
+    font-weight: bold;
+}
 .form-group {
     margin-bottom: 1rem;
     text-align: left;
@@ -54,13 +79,13 @@ h1 {
 label {
     display: block;
     margin-bottom: 0.5rem;
-    color: #2e7d32;
+    color: white;
 }
 
 input {
     width: 100%;
     padding: 0.8rem;
-    border: 1px solid #a5d6a7;
+    border: 1px solid #9edaa0;
     border-radius: 5px;
     transition: border-color 0.3s;
     box-sizing: border-box;
@@ -68,7 +93,7 @@ input {
 
 input:focus {
     outline: none;
-    border-color: #2e7d32;
+    border-color: #bcecbe;
 }
 
 .toggle-icon {
@@ -84,19 +109,19 @@ input:focus {
 
 .btn {
     font-size: medium;
-    background-color: rgb(66, 173, 73);
-    color: white;
-    padding: 0.8rem 1.5rem;
-    border: none;
+    background-color: white;
+    color: #2e7d32;
+    padding: 1rem;
+    width: 30%;
+    border: #9edaa0 solid 2px;
     border-radius: 30px;
     cursor: pointer;
     transition: all 0.3s ease;
-    width: 50%;
     font-weight: bold;
 }
 
 .btn:hover {
-    background-color: #2e7d32;
+    background-color: white;
     transform: translateY(-2px);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }

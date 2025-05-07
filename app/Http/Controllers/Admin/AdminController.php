@@ -42,4 +42,5 @@ class AdminController extends Controller
         DB::table('users')->get();
         return view('admin.dashboard');
     }
+
 }

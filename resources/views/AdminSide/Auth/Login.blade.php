@@ -4,18 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="Styles/AdminLogin.css">
-    <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
+    <link rel="shortcut icon" href="img/IM_logo.png" type="image/x-icon">
     <title>Admin Account</title>
 
 </head>
 
 <body>
-   
+
     <div class="login-container">
-    <div class="logo-container">
-        <img src="{{ asset('img/logo.png') }}" alt="recycle logo">
-        <h1>ADMIN</h1>
+        <div class="logo-container">
+                <h1>TrashBinnie</h1>
+                <p>ADMIN</p>
         @if(session('error'))
             <label style="color: red; font-size:small;">{{ session('error') }}</label>
             <script>
@@ -38,6 +39,7 @@
             <button type="submit" class="btn">Log In</button>
         </form>
     </div>
+
     <script>
         const passwordInput = document.getElementById("password");
         const toggleIcon = document.getElementById("togglePassword");

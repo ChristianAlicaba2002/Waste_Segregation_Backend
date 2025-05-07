@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('waste_item', function (Blueprint $table) {
-            $table->integer('item_id')->primary()->autoIncrement();
-            $table->integer('category_id')->nullable();
-            $table->integer('binnie_id');
-            $table->integer('weightRecorded')->nullable();
+        Schema::create('location', function (Blueprint $table) {
+            $table->integer('location_id')->primary()->autoIncrement();
+            $table->string('binnie_id')->references('binnie_id')->on('waste_item')->onDelete('cascade');
+            $table->string('location_name')->references('city')->on('clients')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -25,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('waste_item');
+        Schema::dropIfExists('location');
     }
 };

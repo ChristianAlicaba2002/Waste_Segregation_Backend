@@ -9,5 +9,4 @@ class WasteCategory extends Model
     protected $table = 'waste_category';
     protected $primaryKey = 'category_id';
     protected $fillable = ['category_id', 'category_name'];
-    public $timestamps = false;
 }
