@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="img/IM_logo.png" type="image/x-icon">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+
     <title>Admin</title>
     <style>
         body {
@@ -344,11 +346,9 @@
             width: 100%;
             height: fit-content;
             padding: 0.4rem;
-            background-color: #81c784;
-            border: #c8e6c9 1px solid;
-            border-radius: 8px;
-            color: white;
+            color: black;
             box-sizing: border-box;
+
         }
 
         .Binnie-section th,
@@ -385,6 +385,19 @@
             flex: 1;
             box-sizing: border-box;
         }
+        .Binnie-section tbody tr{
+            margin-bottom: 1rem;
+        }
+        .Binnie-section tbody tr:nth-child(even){
+            border-radius: 8px;
+            border: 1px solid lightgreen;
+            background-color: lightgreen;
+        }
+
+        .Binnie-section tbody tr:nth-child(odd){
+            border-radius: 8px;
+            border: 1px solid lightgreen;
+        }
 
         #tableContent {
             padding: 15px;
@@ -403,6 +416,7 @@
         .table-record-section {
             padding: 12px;
             border-radius: 4px;
+            overflow: auto;
         }
 
         .table-record-section table {
@@ -462,14 +476,13 @@
 
         .table-record-section tbody tr {
             border: 1px solid rgb(225, 250, 224);
-            /* background-color: #81c784; */
             border-radius: 8px;
             margin-bottom: 0.8rem;
             padding: 0;
         }
 
         .table-record-section tbody tr:nth-child(even) {
-            background-color: lightgrey;
+            background-color: lightgreen;
         }
 
 
@@ -566,6 +579,59 @@
             background: rgba(0, 0, 0, 0.5);
             z-index: 999;
         }
+
+        form {
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            width: 20%;
+            float: right;
+        }
+
+        .binnieSearch {
+            display: flex;
+            gap: 10px;
+        }
+
+        .binnieSearch input[type="text"] {
+            flex-grow: 1;
+            padding: 10px;
+            border: 1px solid lightgreen;
+            border-radius: 10px;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .binnieSearch input[type="text"]::placeholder {
+            color: #999;
+        }
+
+        .binnieSearch input[type="text"]:focus {
+            outline: none;
+            border-color:rgb(122, 255, 155);
+            box-shadow: 0 0 3px rgb(135, 255, 155);
+        }
+
+        .binnieSearch button[type="submit"] {
+            background-color:rgb(141, 236, 145);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .binnieSearch button[type="submit"]:hover {
+            background-color:rgb(114, 197, 117);
+        }
+
+        .binnieSearch button[type="submit"]:focus {
+            outline: none;
+            box-shadow: 0 0 3px #4caf50;
+        }
+
     </style>
 </head>
 
@@ -611,37 +677,95 @@
 
     <div class="dashboard-container">
         <main class="content">
-            <section id="homeContent" class="section active">
-                <h1>Welcome back, Admin!</h1>
-                <div class="trash-summary">
-                    <div class="card">
-                        <i class="fas fa-newspaper"></i>
-                        <h3>Paper Items</h3>
-                        <div class="stat"></div>
-                        <h4>TOTAL TRASH: </h4>
-                        <h5>{{ $paper }}</h5>
-                    </div>
-                    <div class="card">
-                        <i class="fas fa-wine-bottle"></i>
-                        <h3>Plastic Items</h3>
-                        <div class="stat"></div>
-                        <h4>TOTAL TRASH: </h4>
-                        <h5>{{ $plastic }}</h5>
-                    </div>
-                    <div class="card">
-                        <i class="fas fa-cog"></i>
-                        <h3>Metal Items</h3>
-                        <div class="stat"></div>
-                        <h4>TOTAL TRASH: </h4>
-                        <h5>{{ $metal }}</h5>
-                    </div>
-            </section>
+        <section id="homeContent" class="section active">
+    <h1>Welcome back, Admin!</h1>
+    <div class="trash-summary">
+        <div class="card">
+            <i class="fas fa-newspaper"></i>
+            <h3>Paper Items</h3>
+            <div class="stat"></div>
+            <h4>TOTAL TRASH: </h4>
+            <h5>{{ $paper }}</h5>
+        </div>
+        <div class="card">
+            <i class="fas fa-wine-bottle"></i>
+            <h3>Plastic Items</h3>
+            <div class="stat"></div>
+            <h4>TOTAL TRASH: </h4>
+            <h5>{{ $plastic }}</h5>
+        </div>
+        <div class="card">
+            <i class="fas fa-cog"></i>
+            <h3>Metal Items</h3>
+            <div class="stat"></div>
+            <h4>TOTAL TRASH: </h4>
+            <h5>{{ $metal }}</h5>
+        </div>
+    </div>
 
+    <div class="chart" style="display: flex; justify-content: center;">
+        <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+
+        <script>
+        const xValues = ["Cebu", "Lapu-Lapu"];
+        const yValues = [55, 49];
+        const barColors = ["#8FBC8F","#3CB371"];
+
+        new Chart("myChart", {
+          type: "bar",
+          data: {
+            labels: xValues,
+            datasets: [{
+              backgroundColor: barColors,
+              data: yValues
+            }]
+          },
+          options: {
+            legend: {display: false},
+            scales: {
+              yAxes: [{
+                ticks: {
+                  beginAtZero: true,
+                  font: {
+                    weight: 'bold',
+                    color: '#2E8B57'
+                  }
+                }
+              }],
+              xAxes: [{
+                ticks: {
+                  font: {
+                    weight: 'bold',
+                    color: '#2E8B57'
+                  }
+                }
+              }]
+            },
+            title: {
+              display: true,
+              text: "2025 Product Sold",
+              font: {
+                size: 24,
+                weight: 'bold',
+                color: '#228B22'
+              }
+            }
+          }
+        });
+        </script>
+    </div>
+</section>
             <!-- User Information -->
             <section id="userContent" class="section">
                 <h2>User Information</h2>
                 <div class="Binnie-section">
-                    <table>
+                        <form action="" method="GET">
+                            <div class="binnieSearch">
+                                <input type="text" name="search" placeholder="Find User">
+                                <button type="submit">Search</button>
+                            </div>
+                        </form>
+                        <table>
                         <thead>
                             <tr>
                                 <th>Trashbinnie ID</th>
@@ -717,20 +841,30 @@
                 <h2>Trash Record</h2>
                 <div class="table-legend-container">
                     <div class="table-legend">
-                        <div class="legend-item">
+                        <div class="legend-item" style="margin-bottom:5px;">
                             <span class="legend-color" style="background-color: #e74c3c;"></span>
                             <span>Metal: 1</span>
                         </div>
-                        <div class="legend-item">
+                        <div class="legend-item" style="margin-bottom:5px;">
                             <span class="legend-color" style="background-color: #2ecc71;"></span>
                             <span>Paper: 2</span>
                         </div>
-                        <div class="legend-item">
+                        <div class="legend-item" style="margin-bottom:5px;">
                             <span class="legend-color" style="background-color: #3498db;"></span>
                             <span>Plastic: 3</span>
                         </div>
                     </div>
                 </div>
+
+                <div class="binnieSearch" style="margin-bottom: 15px;">
+                    <form action="" method="GET">
+                        <div class="search-input-group" style="display: flex; gap: 10px; align-items: center;">
+                            <input type="text" id="search" name="search" placeholder="Enter User ID or Trash ID">
+                            <button type="submit">Search</button>
+                        </div>
+                    </form>
+                </div>
+
                 <div class="table-record-section">
                     <table class="record-table">
                         <thead>
@@ -760,15 +894,15 @@
                             @endif
                         </tbody>
                     </table>
-                    <div class="totaltrash" style="width: auto; background-color: lightgreen;  border: white 1px solid; border-radius:20px;
-                                                    margin-top: 20%;">
-                        <div class="category" style="display: flex; flex-direction:row; gap:10rem; padding:10px 20px;
-                                                font-size: smaller;">
-                            <h3>Total Items Segregated: </h3>
+                    <div style="position: relative; min-height: some-appropriate-height;">
+                    <div class="totaltrash" style="width:100%; background-color: lightgreen; border: 1px solid white; border-radius: 20px; margin-top: 0;">
+                        <div class="category" style="display: flex; flex-direction: row; gap: 10rem; padding: 10px; text-align: left; font-size: smaller;">
+                            <h3>Total Items Segregated:</h3>
                             <h3>Paper: {{ $paper }}</h3>
                             <h3>Plastic: {{ $plastic }}</h3>
                             <h3>Metal: {{ $metal }}</h3>
                         </div>
+                    </div>
                     </div>
                 </div>
             </section>
